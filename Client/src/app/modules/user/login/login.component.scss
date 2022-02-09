@@ -1,0 +1,18 @@
+.login{
+    height: 100vh;
+    .card-login{
+        max-width: 65% !important;
+        width: 100%;
+        .container-form-login{
+            background-color:#f5f5f5;
+            form{
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        img{
+            width: 100%;
+        }
+        
+    }
+}

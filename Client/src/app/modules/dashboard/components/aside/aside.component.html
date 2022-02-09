@@ -1,0 +1,13 @@
+<aside id="navbar-aside" class="bg-light">
+    <ul>
+        <li *ngFor="let item of menu">
+           <strong>
+            <a class="text-primary" routerLink="{{ item.to }}">
+                <i class="{{ item.icon }}"></i>
+                <br>
+                {{ item.label}}
+                </a>
+           </strong>
+        </li>
+    </ul>
+</aside>

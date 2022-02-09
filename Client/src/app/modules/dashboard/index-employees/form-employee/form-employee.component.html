@@ -1,0 +1,69 @@
+<form *ngIf="action == 'store'" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm.value)">
+    <div class="form-group">
+        <label for="" class="control-label">Nombre</label>
+        <input type="text" class="form-control" name="first_name" placeholder="Nombres" ngModel required>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Nombre</label>
+        <input type="text" class="form-control" name="last_name" placeholder="Apellidos" ngModel required>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Puesto de trabajo</label>
+        <ng-select placeholder="Puesto de trabajo" ngModel required [items]="positions" name="position"></ng-select>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Fecha de nacimiento</label>
+        <input type="date" class="form-control" ngModel required name="birthday">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary rounded">Guardar</button>
+    </div>
+</form>
+<form *ngIf="action == 'show'" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm.value)">
+    <div class="form-group">
+        <label for="" class="control-label">Nombre</label>
+        <input type="text" class="form-control" name="first_name" placeholder="Nombres" required readonly="readonly" value="{{ employee.first_name }}">
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Nombre</label>
+        <input type="text" class="form-control" name="last_name" placeholder="Apellidos" readonly="readonly" value="{{ employee.last_name }}">
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Puesto de trabajo</label>
+        <input type="text" class="form-control" name="position" readonly="readonly" value="{{ employee.position }}">
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Fecha de nacimiento</label>
+        <input type="date" class="form-control" required name="birthday" readonly="readonly" value="{{ employee.birthday }}">
+    </div>
+</form>
+<form *ngIf="action == 'update'" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm.value)">
+    <div class="form-group">
+        <label for="" class="control-label">Nombre</label>
+        <input type="text" class="form-control" name="first_name" placeholder="Nombres" required  [(ngModel)]="employee.first_name" value="{{ employee.first_name }}">
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Nombre</label>
+        <input type="text" class="form-control" name="last_name" placeholder="Apellidos"  value="{{ employee.last_name }}" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Puesto de trabajo</label>
+        <ng-select placeholder="Puesto de trabajo" [(ngModel)]="employee.position" required [items]="positions" name="position"></ng-select>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Fecha de nacimiento</label>
+        <input type="date" class="form-control" required name="birthday"  value="{{ employee.birthday }}" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary rounded">Guardar</button>
+    </div>
+</form>
+<form *ngIf="action == 'delete'" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm.value)">
+    <div class="form-group">
+        ¿Estás seguro de eliminar este usuario?
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-danger rounded">ELIMINAR</button>
+        <button class="btn btn-btn-light rounded">CANCELAR</button>
+    </div>
+</form>

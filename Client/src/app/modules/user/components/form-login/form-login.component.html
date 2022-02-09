@@ -1,0 +1,16 @@
+<form class="form-login" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <div class="form-group">
+        <h1 class="text-gray w-70 text-center">Inicia sesión en <br>nuestra app</h1>
+    </div>
+    <div class="form-group">
+        <div class="control-label">Email</div>
+        <input type="email" class="form-control" ngModel name="email" placeholder="Email" (change)="onChange(loginForm.value)">
+    </div>
+    <div class="form-group">
+        <div class="control-label">Contraseña</div>
+        <input type="password" class="form-control" ngModel name="password" placeholder="Contraseña" (change)="onChange(loginForm.value)">
+    </div>
+    <div class="form-group">
+        <button [disabled]="disabled" class="btn btn-primary btn-block rounded">Iniciar sesión</button>
+    </div>
+</form>

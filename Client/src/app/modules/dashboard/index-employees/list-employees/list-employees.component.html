@@ -1,0 +1,99 @@
+<div id="tabs" class="row">
+        <h5> <a routerLink="/dashboard">Dashboard</a> / <a routerLink="/dashboard/employees">Employees</a></h5>
+</div>
+<div class="row mt-3 mb-3">
+    <div class="btn btn-primary rounded" (click)="save(addEmployee)">Agregar Empleado</div>
+</div>
+<hr>
+<div class="row">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th scope="col">NOMBRES</th>
+                        <th scope="col">APELLIDOS</th>
+                        <th scope="col">POSICION</th>
+                        <th scope="col">FECHA DE NACIMIENTO</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let employee of employees">
+                        <td>{{ employee.first_name}}</td>
+                        <td>{{ employee.last_name }}</td>
+                        <td>{{ employee.position }}</td>
+                        <td>{{ employee.birthday }}</td>
+                        <td>
+                            <button (click)="action(employee, showEmployee)" class="btn btn-primary rounded">VER</button>
+                            &nbsp;
+                            <button (click)="action(employee, editEmployee)" class="btn btn-success rounded">EDITAR</button>
+                            &nbsp;
+                            <button (click)="action(employee, deleteEmployee)" class="btn btn-danger rounded">ELIMINAR</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-template #addEmployee> 
+    <div class="container-fluid">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Agregar Empleado</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <app-form-employee [action]="'store'" [modalRef]="modalRef" [employees]="employees"></app-form-employee>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #showEmployee> 
+    <div class="container-fluid">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Ver Empleado</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <app-form-employee [action]="'show'" [modalRef]="modalRef" [employees]="employees" [employee]="employee"></app-form-employee>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #editEmployee> 
+    <div class="container-fluid">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Actualizar Empleado</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <app-form-employee [action]="'update'" [modalRef]="modalRef" [employees]="employees" [employee]="employee"></app-form-employee>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #deleteEmployee> 
+    <div class="container-fluid">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-center">Borrar empleado</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <app-form-employee [action]="'delete'" [modalRef]="modalRef" [employees]="employees" [employee]="employee" [reset]="ngOnInit"></app-form-employee>
+            </div>
+        </div>
+    </div>
+</ng-template>
